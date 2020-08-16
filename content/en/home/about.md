@@ -12,7 +12,7 @@ subtitle = ''
 +++
 
 
-pd3f was created by Johannes Filter and funded by the German [Federal Ministry of Education and Research](https://www.bmbf.de/en/index.html) as part of their funding for Open-source software [Prototype Fund](https://prototypefund.de/en/).
+pd3f was created by Johannes Filter and financed by the German [Federal Ministry of Education and Research](https://www.bmbf.de/en/index.html) as part of their funding for Open-source software with the [Prototype Fund](https://prototypefund.de/en/).
 
 Johannes Filter is an independent researcher, software developer and data analyst. His work is focused on human-computer interaction, machine learning and natural-language processing. [Website](https://johannesfilter.com), [Twitter](https://twitter.com/fil_ter)
 

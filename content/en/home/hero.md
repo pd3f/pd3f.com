@@ -52,7 +52,7 @@ hero_media = "logo_margin.svg"
 +++
 
 
-pd3f is a PDF **text extraction** pipeline that is self-hosted, local-first and Docker-based.
+pd3f is an Open-source PDF **text extraction** pipeline that is self-hosted, local-first and Docker-based.
 
 It **reconstructs** the original **continuous text** with the help of **machine learning**.
 
