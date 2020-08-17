@@ -6,31 +6,31 @@ active = true  # Activate this widget? true/false
 weight = 20  # Order that this section will appear.
 
 title = "Features"
-subtitle = "Document _anything_ ✨"
+subtitle = "Gründe, warum pd3f für Sie ist"
 
 # Showcase features.
 # 
 # Add/remove as many `[[feature]]` blocks below as you like.
 # 
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
+    
+[[feature]]
+  icon = "industry"
+  icon_pack = "fas"
+  name = "Vollständige Pipeline"
+  description = "Auf Scans wird automatisch Text erkannt"
 
 [[feature]]
-  icon = "book-open"
+  icon = "server"
   icon_pack = "fas"
-  name = "Project Documentation"
-  description = "For users"
-  
+  name = "Lokal oder entfernt"
+  description = "Läuft auf dem eigenen Computer oder auf dem Server"  
+
 [[feature]]
-  icon = "question"
-  icon_pack = "fas"
-  name = "Knowledge Base"
-  description = "For teams"  
-  
-[[feature]]
-  icon = "list-alt"
-  icon_pack = "fas"
-  name = "Personal Notebook"
-  description = "For yourself"
+  icon = "docker"
+  icon_pack = "fab"
+  name = "Einfach zu installieren"
+  description = "Durch Docker ist die Installation einfach"
 
 # Uncomment to use emoji icons.
 # [[feature]]

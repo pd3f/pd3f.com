@@ -12,12 +12,20 @@
   contentDir = "content/de"
   [de.params]
     description = "Site description in Chinese..."
-  [[de.menu.main]]
-    name = "Über"
-    url = "#über"
-    weight = 10
+  contact_links = [
+    {icon = "twitter", icon_pack = "fab", name = "Auf Twitter folgen", link = "https://twitter.com/pd3f_"},
+    {icon = "github", icon_pack = "fab", name = "Quellcode auf GitHub einsehen", link = "https://github.com/pd3f"},
+    {icon = "envelope", icon_pack = "fas", name = "Öffentlicher E-Mail-Liste beitreten", link = "https://groups.io/g/pd3f/"},
+    ]
+  # broken right now
+  # [[de.menu.main]]
+  #  name = "Über"
+  #  url = "/de/#über-das-projekt"
+  #  weight = 10
 
   [[de.menu.main]]
     name = "Dokumentation"
     url = "/docs"
     weight = 20
+
+
