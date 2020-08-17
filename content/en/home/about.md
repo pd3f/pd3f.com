@@ -20,8 +20,12 @@ Johannes Filter is an independent researcher, software developer and data analys
 
 
 <small>
-Das Vorhaben wurde mit Mitteln des Bundesministeriums für Bildung und Forschung unter dem Förderkennzeichen 01IS18S65 gefördert. Die Verantwortung für den Inhalt dieser Veröffentlichung liegt beim Autor.
+The project was funded by the German Ministry of Education and Research under the funding reference number 01IS19S18. The author is responsible for the content of this publication.
 </small>
 
-![](/media/logo-bmbf.svg)
+<!-- <small>
+Das Vorhaben wurde mit Mitteln des Bundesministeriums für Bildung und Forschung unter dem Förderkennzeichen 01IS19S18 gefördert. Die Verantwortung für den Inhalt dieser Veröffentlichung liegt beim Autor.
+</small> -->
+
+![](/media/logo-bmbf_en.svg)
 ![](/media/logo-ptf.svg)
