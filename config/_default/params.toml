@@ -128,7 +128,7 @@ abstract_length = 135
 
 # Load JS plugins
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
-plugins_js  = []
+plugins_js = ["matomo"]
 
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
@@ -137,7 +137,6 @@ contact_links = [
   {icon = "github", icon_pack = "fab", name = "Check out the code on GitHub", link = "https://github.com/pd3f"},
   {icon = "envelope", icon_pack = "fas", name = "Join our public mailing list", link = "https://groups.io/g/pd3f/"},
   ]
-
 
 
 ############################
