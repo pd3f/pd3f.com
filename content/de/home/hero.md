@@ -5,7 +5,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "pd3f – Jenseitz PDF"
+title = "Jenseitz des PDF"
 
 # Hero image (optional). Enter filename of an image in the `static/media/` folder.
 hero_media = "logo_margin.svg"
@@ -54,8 +54,8 @@ hero_media = "logo_margin.svg"
 
 pd3f ist eine Open-Source-PDF-**Text-Extraktion**-Pipeline.
 
-pd3 kannst selbst gehostet werden kann, aber funktionert auch lokal auf dem Rechner.
+pd3 kannst selbst gehostet werden, funktionert aber auch lokal auf dem Rechner.
 
-pd3f **rekonstruiert** den ursprünglichen **Fließtext** eines PDFs mithilfe von **Maschinellen Lernen**.
+pd3f **rekonstruiert** den ursprünglichen **Fließtext** eines PDFs mithilfe von **maschinellem Lernen**.
 
 pd3f befindet sich noch im Versuchsstadium, daher verwenden Sie es bitte mit Vorsicht.

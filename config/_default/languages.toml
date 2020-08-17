@@ -11,7 +11,7 @@
   languageCode = "de-de"
   contentDir = "content/de"
   [de.params]
-    description = "Site description in Chinese..."
+    description = "pd3f ist eine Open-Source-PDF-Text-Extraktion-Pipeline. pd3f rekonstruiert den ursprünglichen Fließtext eines PDFs mithilfe von maschinellem Lernen."
   contact_links = [
     {icon = "twitter", icon_pack = "fab", name = "Auf Twitter folgen", link = "https://twitter.com/pd3f_"},
     {icon = "github", icon_pack = "fab", name = "Quellcode auf GitHub einsehen", link = "https://github.com/pd3f"},

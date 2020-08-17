@@ -29,8 +29,8 @@ subtitle = "Gründe, warum pd3f für Sie ist"
 [[feature]]
   icon = "docker"
   icon_pack = "fab"
-  name = "Einfach zu installieren"
-  description = "Durch Docker ist die Installation einfach"
+  name = "Einfach aufzusetzen"
+  description = "Durch Docker ist die Installation simpel"
 
 # Uncomment to use emoji icons.
 # [[feature]]

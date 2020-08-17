@@ -54,6 +54,6 @@ hero_media = "logo_margin.svg"
 
 pd3f is an Open-source PDF **text extraction** pipeline that is self-hosted, local-first and Docker-based.
 
-It **reconstructs** the original **continuous text** with the help of **machine learning**.
+pd3f **reconstructs** the original **continuous text** with the help of **machine learning**.
 
 pd3f is still in an experimental stage, so please use it with caution.
