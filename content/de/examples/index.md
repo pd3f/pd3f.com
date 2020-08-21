@@ -29,7 +29,7 @@ Text extrahiert von gescannten PDF.
     </embed>
 </object>
 
-[Raw extracted text here](/examples/00020_08112014_Stellungnahme_RAK_Koeln_RefE_Bekaempfung_Korruption.txt)
+[Rohen, extrahierten Text hier](/examples/00020_08112014_Stellungnahme_RAK_Koeln_RefE_Bekaempfung_Korruption.txt)
 
 
 ## Beispiel Nr. 2
@@ -43,7 +43,7 @@ Text extrahiert von einem digital PDF.
     </embed>
 </object>
 
-[Raw extracted text here](/examples/00004_09212018_bstbk_Unwandlungsgesetz.txt)
+[Rohen, extrahierten Text hier](/examples/00004_09212018_bstbk_Unwandlungsgesetz.txt)
 
 ## Beispiel Nr. 3
 
@@ -57,4 +57,4 @@ Another digital PDF, the footnotes were turned in endnotes.
     </embed>
 </object>
 
-[Raw extracted text here](/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.txt)
+[Rohen, extrahierten Text hier](/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.txt)
