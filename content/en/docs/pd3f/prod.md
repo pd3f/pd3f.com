@@ -57,3 +57,13 @@ server {
 ```
 
 Make sure set to set the correct permission to let Nginx serve the static files (in `/var/pd3f/pd3f-data-uploads/`).
+
+## Common Problems
+
+If there are problems with rq (the queue), just remove the image:
+
+```
+docker rm root_redis_1
+```
+
+This will clean all data in redis.
