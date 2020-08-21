@@ -25,6 +25,7 @@ We try out best to prevent malicious access, but we cannot guarantee it.
 
 The demo is only for the demonstration of this prototypical software.
 Uploaded files will be deleted within two days after the file has been successfully processed.
+Uploaded files are never viewed manually at any time. PDFs are also deleted if there are errors during processing.
 
 
 

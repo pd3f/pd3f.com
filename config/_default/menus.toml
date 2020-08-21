@@ -12,3 +12,8 @@
   url = "docs/"
   weight = 20
 
+
+[[main]]
+  name = "Examples"
+  url = "examples/"
+  weight = 30

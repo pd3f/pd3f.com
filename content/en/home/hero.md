@@ -43,8 +43,8 @@ hero_media = "logo_margin.svg"
   icon = "file-upload"
   
 [cta_alt]
-  url = "docs/"
-  label = "View Documentation"
+  url = "/examples"
+  label = "View Examples"
 
 # Note. An optional note to show underneath the links.
 # [cta_note]

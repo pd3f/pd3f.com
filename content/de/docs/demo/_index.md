@@ -25,6 +25,8 @@ Wir bemühen uns nach besten Kräften, böswilligen Zugriff zu verhindern, aber 
 
 Die Demo dient nur zur Demonstration dieser prototypischen Software.
 Hochgeladene Dateien werden innerhalb von zwei Tagen nach erfolgreicher Verarbeitung der Datei gelöscht.
+Hochgeladene Dateien werden zu keinen Zeitpunkt manuell angesehen. Auch bei Fehlern in der Bearbeitung werden die PDFs gelöscht.
+
 
 
 ### Verantwortliche Person
