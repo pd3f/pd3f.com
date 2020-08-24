@@ -11,7 +11,7 @@ subtitle = ''
   columns = "1"
 +++
 
-<!-- *Eine längere Einführung zu pd3f gibt es auf der Seite des [Prototype Fund](https://prototypefund.de).* -->
+*Eine längere Einführung zu pd3f gibt es in einem [Blog-Post auf der Seite des Prototype Fund](https://demoweek.prototypefund.de/projects/06-ddd.html).*
 
 pd3f erkennt automatisiert Text auf gescannte PDFs mit [OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF) (Tesseract) und extrahiert Tabellen mit [Camelot](https://github.com/camelot-dev/camelot) und [Tabula](https://github.com/tabulapdf/tabula).
 Es baut auf der Ausgabe von [Parsr](https://github.com/axa-group/Parsr) auf.
