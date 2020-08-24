@@ -49,8 +49,6 @@ Text extrahiert von einem digital PDF.
 
 Ein weiteres, digitales PDF. Die Fußnoten wurde in Endnotes transformiert.
 
-Another digital PDF, the footnotes were turned in endnotes.
-
 <object data="/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.pdf" type="application/pdf" width="100%" height="700px">
     <embed src="/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.pdf">Download PDF</a>.</p>

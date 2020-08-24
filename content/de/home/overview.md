@@ -11,7 +11,7 @@ subtitle = ''
   columns = "1"
 +++
 
-*Eine einfachere und längere Einführung zu pd3f gibt es auf der Seite des [Prototype Fund](https://prototypefund.de).*
+<!-- *Eine längere Einführung zu pd3f gibt es auf der Seite des [Prototype Fund](https://prototypefund.de).* -->
 
 pd3f erkennt automatisiert Text auf gescannte PDFs mit [OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF) (Tesseract) und extrahiert Tabellen mit [Camelot](https://github.com/camelot-dev/camelot) und [Tabula](https://github.com/tabulapdf/tabula).
 Es baut auf der Ausgabe von [Parsr](https://github.com/axa-group/Parsr) auf.
@@ -22,7 +22,7 @@ Das zugrundeliegende Python-Paket [pd3f-core](https://github.com/pd3f/pd3f-core)
 Es verwendet maschinelles Lernen mit [Sprachmodellen (Language Models)](https://machinelearningmastery.com/statistical-language-modeling-and-neural-language-models/), um zu erraten, wie der ursprüngliche Text aussah.
 
 pd3f ist besonders nützlich für Sprachen mit langen Wörtern wie im Deutschem.
-Es wurde hauptsächlich entwickelt, um deutsche Briefe und offizielle Dokumente zu analysieren.
+Es wurde hauptsächlich entwickelt, um deutsche Briefe und offizielle Dokumente zu bearbeiten.
 Neben Deutsch unterstützt pd3f auch Englisch, Spanisch und Französisch.
 Weitere Sprachen werden später hinzugefügt.
 

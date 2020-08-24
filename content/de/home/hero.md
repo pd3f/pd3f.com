@@ -54,8 +54,8 @@ hero_media = "logo_margin.svg"
 
 pd3f ist eine Open-Source-PDF-**Text-Extraktion**-Pipeline.
 
-pd3 kannst selbst gehostet werden, funktionert aber auch lokal auf dem Rechner.
+pd3f **rekonstruiert** den ursprünglichen **Fließtext** eines Dokuments mithilfe von **maschinellem Lernen**.
 
-pd3f **rekonstruiert** den ursprünglichen **Fließtext** eines PDFs mithilfe von **maschinellem Lernen**.
+pd3 ist zum selbst hosten auf einem Server, funktioniert aber auch lokal auf dem Rechner.
 
-pd3f befindet sich noch im Versuchsstadium, daher verwenden Sie es bitte mit Vorsicht.
+pd3f befindet sich noch im Versuchsstadium, daher bitte mit Vorsicht verwenden.

@@ -18,7 +18,7 @@ subtitle = "Gründe, warum pd3f für Sie ist"
   icon = "industry"
   icon_pack = "fas"
   name = "Vollständige Pipeline"
-  description = "Auf Scans wird automatisch Text erkannt"
+  description = "Auf Scans (Bildern) wird automatisch Text erkannt"
 
 [[feature]]
   icon = "server"
