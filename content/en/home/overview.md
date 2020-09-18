@@ -34,3 +34,7 @@ A more systematic evaluation of pd3f will follow in September 2020.
 pd3f is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) and is looking for contributors. Write an email to [hi@jfilter.de](mailto:hi@jfilter.de) if want to cooperate.
 
 ![](/media/flow.jpg)
+
+### Recorded Online Talk about pd3f
+
+{{< youtube iaIgTx49a6s >}}
