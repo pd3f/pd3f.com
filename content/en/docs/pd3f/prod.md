@@ -1,6 +1,6 @@
 ---
 title: Running pd3f in Production with Nginx
-linktitle: pd3f with Nginx
+linktitle: In Production with Nginx
 type: book
 date: "2019-05-05T00:00:00+01:00"
 
@@ -11,7 +11,7 @@ weight: 30
 
 An example config for Nginx to run in conjunction with [`docker-compose.prod.yml`](./docker-compose.prod.yml):
 
-```
+```nginx
 limit_req_zone $binary_remote_addr zone=limitfiles:10m rate=1r/s;
 proxy_cache_path /var/nginx/cache keys_zone=pd3fcache:1m inactive=1m max_size=10M;
 
