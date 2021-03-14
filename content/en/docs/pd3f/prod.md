@@ -47,7 +47,7 @@ server {
 
     # restrict access to dashboard to IP address (or subnet) + protect with Basic Auth
     location /dashboard/ {
-        limit_req zone=limitfiles burst=2 nodelay;
+        limit_req zone=limitfiles burst=20 nodelay;
 
         allow xx.xx.xx.xx;
         deny all;
