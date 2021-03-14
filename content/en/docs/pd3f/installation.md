@@ -11,20 +11,17 @@ date: "2021-03-08T00:00:00Z"
 type: book  # Do not modify.
 ---
 
-You need to setup [Docker](https://docs.docker.com/get-docker/).
-
-You need the `docker-compose.yml` file of this repository. You can download it separately or just fetch the whole repository:
+You need to setup [Docker](https://docs.docker.com/get-docker/), fetch the `pd3f` repository and a start script:
 
 ```bash
 git clone https://github.com/pd3f/pd3f
+cd pd3f
+./dev.sh # or ./prod.sh
 ```
 
-Then go to the folder of this repository and run:
+Adapt the different `docker-compose.yml` files for your needs.
 
-```bash
-docker-compose up
-```
+The first time the `pd3f` starts it will download (and build) the Docker images.
+Alltogether you need ~8 GB of space to store all the required components.
 
-The first time the `pd3f` starts it will download the Docker images.
-You need to have ~8 GB of space to store all the software / data to run this.
 

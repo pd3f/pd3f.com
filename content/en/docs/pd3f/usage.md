@@ -61,7 +61,7 @@ You can also run more parsr workers with this:
 docker-compose up --scale worker=3
 ```
 
-To increase the frontend workers, adap the env `WEB_CONCURRENCY` in `docker-compose.yml`:
+To increase the frontend workers, adapt the env `WEB_CONCURRENCY` in `docker-compose.yml`:
 
 ```yml
 WEB_CONCURRENCY=2
@@ -75,11 +75,11 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --scale worke
 
 ### House Keeping
 
-You will see three folders:
+Docker uses three volumes:
 
-- `pd3f-data-uploads`: input & output files
-- `pd3f-data-cache`: storing data so you don't have to download model files over and over again
-- `pd3f-data-to-ocr`: temporary location for PDFs to get OCRd. Files get deleted but logs get kept.
+- `pd3f-data-uploads`: input & output files, mapped to `./data/pd3f-data-uploads/`
+- `pd3f-data-cache`: internal volume, storing data so you don't have to download model files over and over again
+- `pd3f-data-to-ocr`: internal volume, temporary location for PDFs to get OCRd. Files get deleted but logs get kept.
 
 Results are kept for 24 hours per default. But no files get deleted automatically (only the results in the queue (e.g. the extracted text)).
 

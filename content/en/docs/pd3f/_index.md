@@ -16,6 +16,7 @@ type: book  # Do not modify.
 
 - [Installation](./installation/)
 - [Usage](./usage/)
-- [Experimental Mode](./experimental/)
+- [Experimental mode](./experimental/)
 - [FAQ](./faq/)
-- [In Production with Nginx](./prod/)
+- [In production with nginx](./prod/)
+- [Release notes](./release_notes/)
