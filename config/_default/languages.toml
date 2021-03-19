@@ -15,8 +15,9 @@
   contact_links = [
     {icon = "twitter", icon_pack = "fab", name = "Auf Twitter folgen", link = "https://twitter.com/pd3f_"},
     {icon = "github", icon_pack = "fab", name = "Quellcode auf GitHub einsehen", link = "https://github.com/pd3f"},
-    {icon = "envelope", icon_pack = "fas", name = "Öffentlicher E-Mail-Liste beitreten", link = "https://groups.io/g/pd3f/"},
+    {icon = "comments", icon_pack = "fas", name = "Chat mit uns in unserem Matrix-Channel", link = "https://matrix.to/#/!LqeeFyVKrSsVeWpFNM:matrix.org"},
     ]
+
   # broken right now
   # [[de.menu.main]]
   #  name = "Über"
