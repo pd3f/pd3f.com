@@ -8,6 +8,9 @@ date: "2019-05-05T00:00:00+01:00"
 weight: 40
 ---
 
+## v0.5.x
+
+- make parsr config customizable. check out <https://github.com/pd3f/pd3f/blob/master/example_api.py> and <https://pd3f.github.io/pd3f-core/export.html#pd3f.export.extract>
 
 ## v0.4.x
 
