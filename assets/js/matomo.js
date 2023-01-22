@@ -3,9 +3,9 @@ var _paq = (window._paq = window._paq || []);
 _paq.push(["trackPageView"]);
 _paq.push(["enableLinkTracking"]);
 (function () {
-  var u = "//vis.one/piwik/";
+  var u = "https://matomo.daten.cool/";
   _paq.push(["setTrackerUrl", u + "matomo.php"]);
-  _paq.push(["setSiteId", "14"]);
+  _paq.push(["setSiteId", "7"]);
   var d = document,
     g = d.createElement("script"),
     s = d.getElementsByTagName("script")[0];
