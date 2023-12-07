@@ -11,7 +11,7 @@ subtitle = ''
   columns = "1"
 +++
 
-*A longer introduction to pd3f in German [on the site of the Prototype Fund](https://demoweek.prototypefund.de/projects/06-ddd.html).*
+*A longer introduction to pd3f in German [on the site of the Prototype Fund](https://archive.demoweek.prototypefund.de/runde7/projects/06-ddd.html).*
 
 pd3f can OCR scanned PDFs with [OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF) (Tesseract) and extracts tables with [Camelot](https://github.com/camelot-dev/camelot) and [Tabula](https://github.com/tabulapdf/tabula).
 It's built upon the output of [Parsr](https://github.com/axa-group/Parsr).
