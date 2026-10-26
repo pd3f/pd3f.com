@@ -20,7 +20,7 @@ docker compose up
 ```
 
 Anschließend werden ungefähr 10 GB an Dateien heruntergeladen. Dann steht unter [localhost:1616](http://localhost:1616) eine lokale Webseite bereit, mit der pd3f zu bedienen ist.
-Auf Rechnern mit ARM-Prozessor, etwa Apple Silicon, laufen die Images emuliert und deutlich langsamer.
+Auf Rechnern mit ARM-Prozessor, etwa Apple Silicon, läuft Parsr emuliert und deutlich langsamer.
 
 
 ### Neue Order

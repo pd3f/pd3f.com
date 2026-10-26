@@ -25,5 +25,5 @@ Adapt the `docker-compose*.yml` files to your needs; the [README](https://github
 
 The first start downloads about 10 GB of Docker images.
 
-The published images are amd64 only, so on ARM machines such as Apple Silicon `./prod.sh` runs them emulated and a lot slower.
-`./dev.sh --build` builds pd3f natively, only Parsr stays emulated.
+The pd3f images are published for amd64 and arm64.
+Parsr is only published for amd64, on ARM machines such as Apple Silicon it runs emulated and is a lot slower.

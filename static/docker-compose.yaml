@@ -1,8 +1,6 @@
-# the published pd3f images are amd64 only, they run emulated on ARM hosts
 services:
   web:
     image: pd3f/pd3f:latest
-    platform: linux/amd64
     ports:
       - "1616:5000"
     depends_on:
@@ -27,7 +25,6 @@ services:
 
   worker:
     image: pd3f/pd3f:latest
-    platform: linux/amd64
     depends_on:
       - parsr
       - redis
@@ -43,6 +40,5 @@ services:
 
   ocr_worker:
     image: pd3f/pd3f-ocr:latest
-    platform: linux/amd64
     volumes:
       - ./pd3f-data-to-ocr/:/to-ocr/

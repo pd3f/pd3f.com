@@ -27,6 +27,7 @@ Files of jobs from before the upgrade are not deleted automatically, remove them
 - the Docker image uses the CPU build of PyTorch and is a lot smaller
 - pd3f-core 0.5 and dehyphen 0.4 no longer depend on Flair, the language models are loaded with a restricted unpickler
 - the RQ dashboard runs from the `pd3f/pd3f` image
+- the `pd3f/pd3f` and `pd3f/pd3f-ocr` images are published for amd64 and arm64
 - set `REDIS_URL` to use an external Redis
 - fix: the OCR worker did not start with current Docker versions, so every job waited forever
 - fix: flags such as `fast=false` were read as true
