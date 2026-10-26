@@ -27,7 +27,6 @@ Neben Deutsch unterstützt pd3f auch Englisch, Spanisch und Französisch.
 Weitere Sprachen werden später hinzugefügt.
 
 pd3f enthält eine webbasierte GUI und einen [Flask](https://flask.palletsprojects.com/)-basierten Microservice (API).
-Eine Demo finden Sie unter [demo.pd3f.com](https://demo.pd3f.com).
 
 Eine systematische Evaluierung von pd3f erfolgt im September 2020.
 

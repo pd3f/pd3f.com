@@ -37,10 +37,10 @@ hero_media = "logo_margin.svg"
 #   Display link(s) by specifying a URL and label below. Icon is optional for `[cta]`.
 #   Remove a link/note by deleting a cta/note block.
 [cta]
-  url = "https://demo.pd3f.com"
-  label = "Jetzt ausprobieren"
+  url = "/docs/"
+  label = "Jetzt installieren"
   icon_pack = "fas"
-  icon = "file-upload"
+  icon = "download"
   
 [cta_alt]
   url = "/examples"

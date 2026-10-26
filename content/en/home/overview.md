@@ -27,7 +27,6 @@ Besides German pd3f supports English, Spanish, French and Italian.
 More languages will be added later.
 
 pd3f includes a Web-based GUI and a [Flask](https://flask.palletsprojects.com/)-based microservice (API).
-You can find a demo at [demo.pd3f.com](https://demo.pd3f.com).
 
 pd3f is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) and is looking for contributors. Write an email to [hi@jfilter.de](mailto:hi@jfilter.de) if want to cooperate.
 
