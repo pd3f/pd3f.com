@@ -16,11 +16,11 @@ So the output needs to get checked manually.
 
 ### Dehyphenation of Lines
 
-Check if two lines can be joined by removing hyphens ('-').
+Check if two lines can be joined by removing hyphens (`'-'`).
 
 ### Reasonable Joining of Lines
 
-Decide between adding a simple space (' ') or a new line ('\n') when joining lines.
+Decide between adding a simple space (`' '`) or a new line (`'\n'`) when joining lines.
 
 ## Experimental Mode
 

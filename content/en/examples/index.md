@@ -1,6 +1,6 @@
 ---
 title: Examples
-summary: Here are three exemplary outputs to illustrate the performance of pd3f. The text was extracted in 'experimental' mode.
+summary: Here are three exemplary outputs to illustrate the performance of pd3f. The text was extracted in ‘experimental’ mode.
 # date: "2018-06-28T00:00:00Z"
 
 reading_time: false  # Show estimated reading time?
@@ -14,7 +14,7 @@ header:
   image: ""
 ---
 
-Here are three exemplary outputs to illustrate the performance of pd3f. The text was extracted in 'experimental' mode.
+Here are three exemplary outputs to illustrate the performance of pd3f. The text was extracted in ‘experimental’ mode.
 
 ## Example #1
 

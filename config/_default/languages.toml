@@ -4,11 +4,11 @@
 
 # Configure the English version of the site.
 [en]
-  languageCode = "en-us"
+  locale = "en-us"
   contentDir = "content/en"  # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
 
 [de]
-  languageCode = "de-de"
+  locale = "de-de"
   contentDir = "content/de"
   [de.params]
     description = "pd3f ist eine Open-Source-PDF-Text-Extraktion-Pipeline. pd3f rekonstruiert den ursprünglichen Fließtext eines PDFs mithilfe von maschinellem Lernen."

@@ -1,6 +1,6 @@
 ---
 title: Beispiele
-summary: Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde im 'experimentellen' Modus extrahiert.
+summary: Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde im „experimentellen“ Modus extrahiert.
 # date: "2018-06-28T00:00:00Z"
 
 reading_time: false  # Show estimated reading time?
@@ -14,7 +14,7 @@ header:
   image: ""
 ---
 
-Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde im 'experimentellen' Modus extrahiert.
+Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde im „experimentellen“ Modus extrahiert.
 
 
 ## Beispiel Nr. 1

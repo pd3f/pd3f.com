@@ -21,7 +21,7 @@ For this input
 >
 > ziellen Interessen der Union
 
-`dehyphen` joins the lines and removes the '-':
+`dehyphen` joins the lines and removes the `-`:
 
 > die Bedeutung der **finanziellen** Interessen der Union
 
