@@ -50,7 +50,7 @@ POST parameters:
 - `parsr_config`, `parsr_adjust_cleaner_config`: JSON to change the configuration of Parsr, see [`example_api.py`](https://github.com/pd3f/pd3f/blob/master/example_api.py) and the [pd3f-core documentation](https://pd3f.github.io/pd3f-core/export.html#pd3f.export.extract)
 
 Flags accept `1`, `true`, `on` and `yes`, or `0`, `false`, `off`, `no` and an empty value, in any case.
-Other values are rejected with status 400.
+Other values, and invalid JSON, are rejected with status 400.
 
 Poll `/update/<id>` to follow the progress. The JSON response contains:
 
@@ -59,6 +59,8 @@ Poll `/update/<id>` to follow the progress. The JSON response contains:
 - `position`: present if the job is waiting, its position in the queue
 - `running`: present if the job is running
 - `failed`: present if the job has failed
+
+Unknown and deleted jobs return status 400.
 
 Once `/update/<id>` has returned the text, the results are also available as files: `/files/<filename>.txt` and `/files/<filename>_tables.zip`, with `filename` from that response.
 
@@ -81,8 +83,9 @@ pd3f stores data in four places:
 - the `to_ocr` volume: PDFs waiting for OCR; the OCR worker removes them, the OCRed PDFs and the logs stay until the files of the job get deleted
 - inside the `parsr` container: Parsr never deletes the files of its jobs, a few MB per PDF
 
-The worker deletes the files of a job `KEEP_RESULTS_HOURS` after it finished (24 in `docker-compose.yml`), the queue keeps the results for 24 hours.
-Except after a failed OCR, the files of failed jobs are kept so you can retry or delete them:
+The worker deletes a job and its files `KEEP_RESULTS_HOURS` after it finished or failed (24 in `docker-compose.yml`).
+Until then, you can retry failed jobs or delete them right away; a retried job is still deleted `KEEP_RESULTS_HOURS` after its first failure, even while it runs.
+Jobs whose worker got killed, e.g. by a restart or when running out of memory, are not deleted automatically:
 
 ```bash
 docker compose exec worker flask retry-failed

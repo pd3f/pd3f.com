@@ -21,6 +21,7 @@ docker compose up
 
 Anschließend werden ungefähr 10 GB an Dateien heruntergeladen. Dann steht unter [localhost:1616](http://localhost:1616) eine lokale Webseite bereit, mit der pd3f zu bedienen ist.
 Auf Rechnern mit ARM-Prozessor, etwa Apple Silicon, läuft Parsr emuliert und deutlich langsamer.
+Für ein Update laden Sie die Datei erneut herunter, führen `docker compose pull` aus und beachten die [Release Notes](/docs/pd3f/release_notes/).
 
 
 ### Neue Order

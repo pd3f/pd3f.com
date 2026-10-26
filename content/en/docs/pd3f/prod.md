@@ -62,6 +62,8 @@ server {
 
 Make sure set to set the correct permission to let nginx serve the static files (in `/var/pd3f/data/pd3f-data-uploads/`).
 
+`docker-compose.prod.yml` publishes ports 1616 and 9181 only on 127.0.0.1, so requests can't bypass nginx.
+
 ## Common Problems
 
 If the queue gets stuck, remove the Redis container including its data and start it again:

@@ -19,11 +19,14 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml pull
 ./prod.sh -d
 ```
 
-`down -v` also removes the `cache` volume, so the language models get downloaded again.
+`down -v` also removes the `cache` volume, so the first job downloads the language models again, and the OCR files of old jobs in the `to_ocr` volume.
 Files of jobs from before the upgrade are not deleted automatically, remove them from `./data/pd3f-data-uploads/`.
 
+If you run pd3f with the [`docker-compose.yaml`](/docker-compose.yaml) from this website, stop it with `docker compose down -v`, download the file again and start it with `docker compose pull && docker compose up`; files of old jobs stay in `pd3f-data-uploads` and `pd3f-data-to-ocr`.
+Own Compose files need `RQ_REDIS_URL` (e.g. `redis://redis:6379`) on `web` and `worker`, and the worker has to run `rq worker --with-scheduler`.
+
 - update to Python 3.13, Flask 3, RQ 2, Redis 8 and OCRmyPDF 17
-- the worker runs the RQ scheduler, so files of finished jobs are deleted automatically after `KEEP_RESULTS_HOURS`; `rq-scheduler` and the `rqscheduler` command are gone
+- the worker runs the RQ scheduler, so jobs and their files are deleted automatically `KEEP_RESULTS_HOURS` after they finished or failed; `rq-scheduler` and the `rqscheduler` command are gone
 - the Docker image uses the CPU build of PyTorch and is a lot smaller
 - pd3f-core 0.5 and dehyphen 0.4 no longer depend on Flair, the language models are loaded with a restricted unpickler
 - the RQ dashboard runs from the `pd3f/pd3f` image
@@ -36,6 +39,10 @@ Files of jobs from before the upgrade are not deleted automatically, remove them
 - fix: the result page kept polling and showed no download buttons for jobs without tables, and did not show a single table
 - fix: text from the PDF was inserted into the result page as HTML
 - fix: the web app could cut off the first lines of a job log
+- fix: after a failed OCR, the result page showed an error on every poll once the files were deleted
+- fix: invalid JSON in `parsr_config` or `parsr_adjust_cleaner_config` caused an internal server error instead of status 400
+- `./prod.sh` publishes the web app only on 127.0.0.1, like the dashboard; for access from other machines, put a reverse proxy in front, see [In production with nginx](/docs/pd3f/prod/)
+- `./dev.sh` publishes Flask's development server only on 127.0.0.1
 - `docker-compose.yml` uses the published `pd3f/pd3f-ocr` image
 - table CSVs no longer contain an index column
 

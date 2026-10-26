@@ -34,9 +34,10 @@ services:
       - ./pd3f-data-cache/:/root/.cache/
     environment:
       RQ_REDIS_URL: redis://redis:6379
-      # delete results / files after one day
+      # delete jobs and their files after one day
       KEEP_RESULTS_HOURS: 24
-    command: rq worker --with-scheduler --results-ttl 86400
+    # the scheduler runs the delayed deletion of jobs and files
+    command: rq worker --with-scheduler
 
   ocr_worker:
     image: pd3f/pd3f-ocr:latest
