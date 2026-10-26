@@ -9,7 +9,7 @@ weight: 30
 ---
 
 
-An example config for nginx to run in conjunction with [`docker-compose.prod.yml`](./docker-compose.prod.yml):
+An example config for nginx to run in conjunction with [`docker-compose.prod.yml`](https://github.com/pd3f/pd3f/blob/master/docker-compose.prod.yml):
 
 ```nginx
 # prevent guessing of file names / URLs
@@ -64,10 +64,11 @@ Make sure set to set the correct permission to let nginx serve the static files 
 
 ## Common Problems
 
-If there are problems with rq (the queue), just remove the image:
+If the queue gets stuck, remove the Redis container including its data and start it again:
 
-```
-docker rm root_redis_1
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml rm -sfv redis
+./prod.sh -d
 ```
 
-This will clean all data in redis.
+This drops all jobs and the scheduled deletions, so files of earlier jobs stay in `./data/pd3f-data-uploads/` and the `to_ocr` volume until you delete them.

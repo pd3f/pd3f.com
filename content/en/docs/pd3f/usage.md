@@ -8,83 +8,89 @@ date: "2021-03-08T00:00:00Z"
 weight: 7
 ---
 
-
 ## Using the GUI
 
-The first time you upload a PDF, `pd3f` will download some large languages models.
-After it's finished access the Web-based GUI at <http://localhost:1616>.
-
-After uploading a PDF you will get redirected to a web page displaying progress / results of the job.
+Access the Web-based GUI at <http://localhost:1616>.
+After uploading a PDF you get redirected to a page displaying the progress and the results of the job.
+The first job downloads the language models, which takes a while.
 
 ## Using the API
 
 ```python
+import sys
 import time
 
 import requests
 
-files = {'pdf': ('test.pdf', open('/dir/test.pdf', 'rb'))}
-response = requests.post('http://localhost:1616', files=files, data={'lang': 'de'})
-id = response.json()['id']
+with open("/dir/test.pdf", "rb") as f:
+    response = requests.post(
+        "http://localhost:1616", files={"pdf": ("test.pdf", f)}, data={"lang": "de"}
+    )
+job_id = response.json()["id"]
 
 while True:
-    r = requests.get(f"http://localhost:1616/update/{id}")
-    j = r.json()
-    if 'text' in j:
+    j = requests.get(f"http://localhost:1616/update/{job_id}").json()
+    if "text" in j:
         break
-    print('waiting...')
+    if "failed" in j:
+        sys.exit(j["log"])
+    print("waiting...")
     time.sleep(1)
-print(j['text'])
+print(j["text"])
 ```
 
-Post params:
- - `lang`: set the language (options: 'de', 'en', 'es', 'fr')
- - `fast`: whether to check for tables (default: False)
- - `tables`: whether to check for tables (default: False)
- - `experimental`: whether to extract text in experimental mode (footnotes to endnotes, depuplicate page header / footer) (default: False)
- - `check_ocr`: whether to check first if all pages were OCRd (default: True, cannot be modified in GUI)
+POST parameters:
 
-You have to poll for `/update/<uuid>` to keep up with the progress. The responding JSON tells you about the status of the processing job.
+- `pdf`: the PDF file
+- `lang`: the language, one of `de`, `en`, `es`, `fr`, `it`
+- `fast`: use smaller, faster but less accurate language models (default: false)
+- `tables`: extract tables (default: false)
+- `experimental`: deduplicate page headers and footers and remove page numbers from them, move footnotes to the end and join paragraphs split across pages (default: false)
+- `check_ocr`: OCR pages without text first (default: true, cannot be changed in the GUI)
+- `parsr_config`, `parsr_adjust_cleaner_config`: JSON to change the configuration of Parsr, see [`example_api.py`](https://github.com/pd3f/pd3f/blob/master/example_api.py) and the [pd3f-core documentation](https://pd3f.github.io/pd3f-core/export.html#pd3f.export.extract)
 
-Fields:
- - `log`: always present, text output from the job.
- - `text` and `tables` and `filename`: only present when the job finished successfully
- - `position`: present if on waiting list, returns position as integer
- - `running`: present if job is running
- - `failed`: present if job has failed
+Flags accept `1`, `true`, `on` and `yes`, or `0`, `false`, `off`, `no` and an empty value, in any case.
+Other values are rejected with status 400.
+
+Poll `/update/<id>` to follow the progress. The JSON response contains:
+
+- `log`: always present, text output from the job
+- `text`, `tables` and `filename`: only present when the job finished successfully; `tables` is a list of CSV strings, or `null` without `tables`
+- `position`: present if the job is waiting, its position in the queue
+- `running`: present if the job is running
+- `failed`: present if the job has failed
+
+Once `/update/<id>` has returned the text, the results are also available as files: `/files/<filename>.txt` and `/files/<filename>_tables.zip`, with `filename` from that response.
 
 ### Scaling
 
-You can also run more parsr workers with this:
+Run more workers to process several PDFs at once:
 
 ```bash
-docker-compose up --scale worker=3
+./prod.sh --scale worker=3
 ```
 
-To increase the frontend workers, adapt the env `WEB_CONCURRENCY` in `docker-compose.yml`:
-
-```yml
-WEB_CONCURRENCY=2
-```
-
-You may as well create a new `docker-compose.yml` to override certain settings. Take a look at [`docker-compose.prod.yml`](./docker-compose.prod.yml)
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --scale worker=2
-```
+To increase the number of web server processes, adapt the environment variable `WEB_CONCURRENCY` in [`docker-compose.prod.yml`](https://github.com/pd3f/pd3f/blob/master/docker-compose.prod.yml).
 
 ### House Keeping
 
-Docker uses three volumes:
+pd3f stores data in four places:
 
-- `pd3f-data-uploads`: input & output files, mapped to `./data/pd3f-data-uploads/`
-- `pd3f-data-cache`: internal volume, storing data so you don't have to download model files over and over again
-- `pd3f-data-to-ocr`: internal volume, temporary location for PDFs to get OCRd. Files get deleted but logs get kept.
+- `./data/pd3f-data-uploads/`: input and output files
+- the `cache` volume: language models and cached scores, so they are not downloaded or computed again
+- the `to_ocr` volume: PDFs waiting for OCR; the OCR worker removes them, the OCRed PDFs and the logs stay until the files of the job get deleted
+- inside the `parsr` container: Parsr never deletes the files of its jobs, a few MB per PDF
 
-Results are kept for 24 hours per default. But no files get deleted automatically (only the results in the queue (e.g. the extracted text)).
-
-Run this command from time to time to schedule jobs in order to delete files in `pd3f-data-uploads` and `pd3f-data-to-ocr`.
+The worker deletes the files of a job `KEEP_RESULTS_HOURS` after it finished (24 in `docker-compose.yml`), the queue keeps the results for 24 hours.
+Except after a failed OCR, the files of failed jobs are kept so you can retry or delete them:
 
 ```bash
-docker-compose run --rm worker rqscheduler --host redis --burst
+docker compose exec worker flask retry-failed
+docker compose exec worker flask delete-failed
+```
+
+To free the space Parsr uses, recreate its container when no job is running:
+
+```bash
+docker compose up -d --force-recreate parsr
 ```

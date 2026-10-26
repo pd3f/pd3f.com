@@ -11,17 +11,19 @@ date: "2021-03-08T00:00:00Z"
 type: book  # Do not modify.
 ---
 
-You need to setup [Docker](https://docs.docker.com/get-docker/), fetch the `pd3f` repository and a start script:
+You need [Docker](https://docs.docker.com/get-docker/) with Docker Compose.
+Fetch the `pd3f` repository and run a start script:
 
 ```bash
 git clone https://github.com/pd3f/pd3f
 cd pd3f
-./dev.sh # or ./prod.sh
+./prod.sh # or ./dev.sh --build
 ```
 
-Adapt the different `docker-compose.yml` files for your needs.
+`prod.sh` uses the published Docker images, `dev.sh --build` builds them from the checkout.
+Adapt the `docker-compose*.yml` files to your needs; the [README](https://github.com/pd3f/pd3f#configuration) lists the environment variables.
 
-The first time the `pd3f` starts it will download (and build) the Docker images.
-Alltogether you need ~8 GB of space to store all the required components.
+The first start downloads about 10 GB of Docker images.
 
-
+The published images are amd64 only, so on ARM machines such as Apple Silicon `./prod.sh` runs them emulated and a lot slower.
+`./dev.sh --build` builds pd3f natively, only Parsr stays emulated.

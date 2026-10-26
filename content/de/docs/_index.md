@@ -16,10 +16,11 @@ Erstellen Sie einen Ordern Ihrer Wahl und speichern folgende Datei in diesem Ord
 Starten Sie pd3f in dem Sie in dem Order folgendes ausführen:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
-Anschließend werden ungefähr 8 GB an Dateien heruntergeladen. Dann steht unter [localhost:1616](http://localhost:1616) eine lokale Webseite bereit, mit der pd3f zu bedienen ist.
+Anschließend werden ungefähr 10 GB an Dateien heruntergeladen. Dann steht unter [localhost:1616](http://localhost:1616) eine lokale Webseite bereit, mit der pd3f zu bedienen ist.
+Auf Rechnern mit ARM-Prozessor, etwa Apple Silicon, laufen die Images emuliert und deutlich langsamer.
 
 
 ### Neue Order
