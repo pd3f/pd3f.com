@@ -14,6 +14,7 @@ type: book  # Do not modify.
 `dehyphen` is a Python package for the dehyphenation of broken text, e.g. extracted from a PDF.
 It reconstructs the original continuous text by choosing the most probable way to join lines or paragraphs, and removes hyphens on the way.
 The options are scored with the perplexity of character-based [Flair](https://github.com/flairNLP/flair) language models.
+dehyphen reads Flair's model files and runs them itself, with numpy on the CPU: it needs neither Flair nor PyTorch.
 
 For this input
 

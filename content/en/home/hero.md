@@ -51,9 +51,8 @@ hero_media = "logo_margin.svg"
 #  label = '<span class="js-github-release" data-repo="gcushen/hugo-academic">Show your product version here:<!-- V --></span>'
 +++
 
+pd3f is an open-source PDF **text extraction** pipeline that is self-hosted and local-first.
 
-pd3f is an Open-source PDF **text extraction** pipeline that is self-hosted, local-first and Docker-based.
+pd3f **reconstructs** the original **continuous text**: paragraphs, hyphenated words, running headers and footers, footnotes, and OCR for scans.
 
-pd3f **reconstructs** the original **continuous text** with the help of **machine learning**.
-
-pd3f is still in an experimental stage, so please use it with caution.
+Each line end, page break and choice between copies of a running header or footer is logged with what settled it, and the uncertain ones are marked for checking.

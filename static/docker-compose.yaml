@@ -1,45 +1,13 @@
 services:
-  web:
-    image: pd3f/pd3f:latest
+  pd3f:
+    image: pd3f/pd3f:1.0
+    # only on this computer: the web app has no authentication
     ports:
-      - "1616:5000"
-    depends_on:
-      - redis
+      - "127.0.0.1:8000:8000"
+    # jobs and the language models of the Flair scorers
+    volumes:
+      - ./pd3f-data/:/data/
     environment:
-      RQ_REDIS_URL: redis://redis:6379
-    volumes:
-      - ./pd3f-data-uploads/:/uploads/
-    command: gunicorn app:app --workers=1 --bind=0.0.0.0:5000
-
-  parsr:
-    image: axarev/parsr:v1.2.2
-    # only published for amd64, runs emulated on ARM hosts
-    platform: linux/amd64
-    expose:
-      - 3001
-
-  redis:
-    image: redis:8-alpine
-    expose:
-      - 6379
-
-  worker:
-    image: pd3f/pd3f:latest
-    depends_on:
-      - parsr
-      - redis
-    volumes:
-      - ./pd3f-data-uploads/:/uploads/
-      - ./pd3f-data-to-ocr/:/to-ocr/
-      - ./pd3f-data-cache/:/root/.cache/
-    environment:
-      RQ_REDIS_URL: redis://redis:6379
-      # delete jobs and their files after one day
-      KEEP_RESULTS_HOURS: 24
-    # the scheduler runs the delayed deletion of jobs and files
-    command: rq worker --with-scheduler
-
-  ocr_worker:
-    image: pd3f/pd3f-ocr:latest
-    volumes:
-      - ./pd3f-data-to-ocr/:/to-ocr/
+      # PDFs extracted at the same time, hours a job is kept
+      PD3F_WORKERS: 2
+      PD3F_JOB_TTL: 24

@@ -5,29 +5,36 @@ type: book  # Do not modify.
 
 Willkommen zu der Dokumentation zu pd3f.
 Die vollständige Dokumentation gibt es nur in [Englisch](/docs).
-Es folgt nur eine kurze Einführung, welche jedoch den Umgang mit der Kommando-Zeile (macOS: Terminal, Windows: Power-Shell) erfordert.
+Es folgt nur eine kurze Einführung, welche jedoch den Umgang mit der Kommando-Zeile (macOS: Terminal, Windows: PowerShell) erfordert.
 
 ## Installation
 
 Installieren Sie zunächst [Docker](https://docs.docker.com/get-docker/) auf Ihrem Computer und starten Sie Docker.
 
-Erstellen Sie einen Ordern Ihrer Wahl und speichern folgende Datei in diesem Order ab: [docker-compose.yaml](/docker-compose.yaml).
+Erstellen Sie einen Ordner Ihrer Wahl und speichern Sie folgende Datei in diesem Ordner ab: [docker-compose.yaml](/docker-compose.yaml).
 
-Starten Sie pd3f in dem Sie in dem Order folgendes ausführen:
+Starten Sie pd3f, indem Sie in dem Ordner Folgendes ausführen:
 
 ```bash
 docker compose up
 ```
 
-Anschließend werden ungefähr 10 GB an Dateien heruntergeladen. Dann steht unter [localhost:1616](http://localhost:1616) eine lokale Webseite bereit, mit der pd3f zu bedienen ist.
-Auf Rechnern mit ARM-Prozessor, etwa Apple Silicon, läuft Parsr emuliert und deutlich langsamer.
+Beim ersten Start wird das Docker-Image heruntergeladen, etwa 250 MB. Dann steht unter [localhost:8000](http://localhost:8000) eine lokale Webseite bereit, mit der pd3f zu bedienen ist.
+pd3f läuft auch auf Rechnern mit ARM-Prozessor, etwa Apple Silicon, ohne Emulation.
 Für ein Update laden Sie die Datei erneut herunter, führen `docker compose pull` aus und beachten die [Release Notes](/docs/pd3f/release_notes/).
 
+## Bedienung
 
-### Neue Order
+Laden Sie ein oder mehrere PDFs hoch.
+Für das erste PDF, oder das in der Liste gewählte, zeigt pd3f, woran es gerade arbeitet, und dann den Text neben dem PDF.
+Unsichere Entscheidungen, etwa ob ein Zeilenende ein Leerzeichen oder ein Zeilenumbruch ist, sind markiert.
+Den Text können Sie kopieren oder als Text oder Markdown herunterladen, dazu die Tabellen als CSV und das PDF mit Texterkennung.
 
-Nach der Bedienung von pd3f erscheinen drei neue Order.
+Ergebnisse, die älter als 24 Stunden sind, werden beim nächsten Hochladen gelöscht.
 
-- `pd3f-data-uploads`: Ein- und Ausgabe-Dateien werden hier gespeichert
-- `pd3f-data-cache`: Zwischenspeicher damit große Dateien, die für das Maschinelle Lernen benötigt werden, nicht immer wieder neu geladen werden müssen
-- `pd3f-data-to-ocr`: temporärer Ordner
+### Neuer Ordner
+
+Neben der Datei `docker-compose.yaml` entsteht der Ordner `pd3f-data`:
+
+- `pd3f-data/jobs`: die hochgeladenen PDFs und ihre Ergebnisse
+- `pd3f-data/flair`: die Sprachmodelle von Flair, wenn Sie unter „Scorer for uncertain decisions“ `flair` oder `flair-fast` wählen; sie werden nur einmal heruntergeladen

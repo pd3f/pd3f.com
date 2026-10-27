@@ -50,7 +50,7 @@ local_business_type = ""
 org_name = "pd3f"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = "pd3f is a PDF text extraction pipeline that is self-hosted, local-first and Docker-based. It reconstructs the original continuous text with the help of machine learning."
+description = "pd3f is a PDF text extraction pipeline that is self-hosted and local-first. It reconstructs the continuous text: paragraphs, hyphenated words, running headers and footers, footnotes, and OCR for scans."
 
 ############################
 ## Site Features

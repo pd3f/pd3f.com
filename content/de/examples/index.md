@@ -1,6 +1,6 @@
 ---
 title: Beispiele
-summary: Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde im „experimentellen“ Modus extrahiert.
+summary: Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde von pd3f 1.0 mit den Standard-Einstellungen extrahiert.
 # date: "2018-06-28T00:00:00Z"
 
 reading_time: false  # Show estimated reading time?
@@ -14,13 +14,13 @@ header:
   image: ""
 ---
 
-Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde im „experimentellen“ Modus extrahiert.
+Hier sind drei beispielhafte Ergebnisse zur Veranschaulichung der Leistung von pd3f. Der Text wurde von pd3f 1.0 mit den Standard-Einstellungen extrahiert.
 
 
 ## Beispiel Nr. 1
 
 
-Text extrahiert von gescannten PDF.
+Text extrahiert aus einem gescannten PDF mit Textebene.
 
 
 <object data="/examples/00020_08112014_Stellungnahme_RAK_Koeln_RefE_Bekaempfung_Korruption.pdf" type="application/pdf" width="100%" height="700px">
@@ -34,7 +34,7 @@ Text extrahiert von gescannten PDF.
 
 ## Beispiel Nr. 2
 
-Text extrahiert von einem digital PDF.
+Text extrahiert aus einem digitalen PDF.
 
 
 <object data="/examples/00004_09212018_bstbk_Unwandlungsgesetz.pdf" type="application/pdf" width="100%" height="700px">
@@ -47,7 +47,7 @@ Text extrahiert von einem digital PDF.
 
 ## Beispiel Nr. 3
 
-Ein weiteres, digitales PDF. Die Fußnoten wurde in Endnotes transformiert.
+Ein weiteres digitales PDF. Die Fußnoten wurden ans Ende verschoben.
 
 <object data="/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.pdf" type="application/pdf" width="100%" height="700px">
     <embed src="/examples/00001_112018_FU_Berlin_Richtlinie_2017_1371.pdf">

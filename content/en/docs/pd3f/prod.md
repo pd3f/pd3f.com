@@ -8,69 +8,24 @@ date: "2019-05-05T00:00:00+01:00"
 weight: 30
 ---
 
-
-An example config for nginx to run in conjunction with [`docker-compose.prod.yml`](https://github.com/pd3f/pd3f/blob/master/docker-compose.prod.yml):
+The web app has no authentication: anyone who reaches it can upload PDFs, and anyone with the link of a job can read and delete it.
+Publish it only on 127.0.0.1, as [`docker-compose.yaml`](/docker-compose.yaml) does, and put a reverse proxy with access control in front.
+An example for nginx with Basic Auth:
 
 ```nginx
-# prevent guessing of file names / URLs
-limit_req_zone $binary_remote_addr zone=limitfiles:10m rate=1r/s;
-
 server {
-    server_name changeme.com;
-    client_max_body_size 50M;
+    server_name pdf.example.org;
+    # PD3F_MAX_MB, 100 by default
+    client_max_body_size 100M;
 
-    if ($request_method !~ ^(GET|HEAD|POST)$ )
-    {
-        return 405;
-    }
-
-    location /files/ {
-        limit_req zone=limitfiles burst=2 nodelay;
-
-        add_header Content-disposition "attachment";
-        alias /var/pd3f/data/pd3f-data-uploads/;
-    }
-
-    location ~ /(update|result)/ {
-        limit_req zone=limitfiles burst=2 nodelay;
-
-        proxy_pass http://127.0.0.1:1616;
-    }
+    auth_basic "pd3f";
+    auth_basic_user_file /etc/nginx/pd3f.htpasswd;
 
     location / {
-        # simple frontend caching
-        expires 10m;
-        add_header Cache-Control "public";
-
-        proxy_pass http://127.0.0.1:1616;
-    }
-
-    # restrict access to dashboard to IP address (or subnet) + protect with Basic Auth
-    location /dashboard/ {
-        limit_req zone=limitfiles burst=20 nodelay;
-
-        allow xx.xx.xx.xx;
-        deny all;
-
-        auth_basic "Private Area";
-        auth_basic_user_file /path/to/.htpasswd;
-
-        proxy_pass http://127.0.0.1:9181;
+        proxy_pass http://127.0.0.1:8000;
     }
 }
 ```
 
-Make sure set to set the correct permission to let nginx serve the static files (in `/var/pd3f/data/pd3f-data-uploads/`).
-
-`docker-compose.prod.yml` publishes ports 1616 and 9181 only on 127.0.0.1, so requests can't bypass nginx.
-
-## Common Problems
-
-If the queue gets stuck, remove the Redis container including its data and start it again:
-
-```bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml rm -sfv redis
-./prod.sh -d
-```
-
-This drops all jobs and the scheduled deletions, so files of earlier jobs stay in `./data/pd3f-data-uploads/` and the `to_ocr` volume until you delete them.
+Run one container: it starts `PD3F_WORKERS` extraction processes itself.
+A second container on the same jobs directory would mark the running jobs of the first as interrupted when it starts.

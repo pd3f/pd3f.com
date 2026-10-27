@@ -5,7 +5,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "Jenseitz des PDF"
+title = "Jenseits des PDF"
 
 # Hero image (optional). Enter filename of an image in the `static/media/` folder.
 hero_media = "logo_margin.svg"
@@ -51,11 +51,10 @@ hero_media = "logo_margin.svg"
 #  label = '<span class="js-github-release" data-repo="gcushen/hugo-academic">Show your product version here:<!-- V --></span>'
 +++
 
+pd3f ist eine Open-Source-Pipeline zur **Text-Extraktion** aus PDFs.
 
-pd3f ist eine Open-Source-PDF-**Text-Extraktion**-Pipeline.
+pd3f **rekonstruiert** den ursprünglichen **Fließtext** eines Dokuments: Absätze, getrennte Wörter, Kopf- und Fußzeilen, Fußnoten, und Texterkennung für Scans.
 
-pd3f **rekonstruiert** den ursprünglichen **Fließtext** eines Dokuments mithilfe von **maschinellem Lernen**.
+pd3f ist zum Selbst-Hosten auf einem Server gedacht, läuft aber auch lokal auf dem eigenen Rechner.
 
-pd3 ist zum selbst hosten auf einem Server, funktioniert aber auch lokal auf dem Rechner.
-
-pd3f befindet sich noch im Versuchsstadium, daher bitte mit Vorsicht verwenden.
+Jedes Zeilenende, jeder Seitenumbruch und jede Wahl zwischen Kopien einer Kopf- oder Fußzeile wird samt Begründung protokolliert, und die unsicheren Entscheidungen werden zur Prüfung markiert.

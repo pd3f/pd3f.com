@@ -12,7 +12,7 @@ subtitle = ''
 +++
 
 
-pd3f ist ein Projekt von Johannes Filter und wurde vom [Bundesministerium für Bildung und Forschung](https://www.bmbf.de/) im Rahmen des[Prototype Fund](https://prototypefund.de/) finanziert.
+pd3f ist ein Projekt von Johannes Filter und wurde vom [Bundesministerium für Bildung und Forschung](https://www.bmbf.de/) im Rahmen des [Prototype Fund](https://prototypefund.de/) finanziert.
 
 Johannes Filter ist ein unabhängiger Forscher, Softwareentwickler und Datenanalyst. Seine Arbeit konzentriert sich auf Mensch-Computer-Interaktion, maschinelles Lernen und Computerlinguistik. [Website](https://johannesfilter.com), [Twitter](https://twitter.com/fil_ter)
 

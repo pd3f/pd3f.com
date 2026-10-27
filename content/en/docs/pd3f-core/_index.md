@@ -11,13 +11,17 @@ date: "2018-09-09T00:00:00Z"
 type: book  # Do not modify.
 ---
 
-`pd3f-core` is the Python package at the heart of pd3f.
-It reconstructs the original continuous text from PDFs that are text-based or already OCRd.
-[Parsr](https://github.com/axa-group/Parsr) chunks a PDF into lines and paragraphs, then [dehyphen](/docs/dehyphen/) joins them in the most probable way, judged by character-based language models.
+`pd3f-core` was the Python package at the heart of pd3f 0.x: it rebuilt the continuous text from the output of [Parsr](https://github.com/axa-group/Parsr).
+Since pd3f 1.0 it is part of [pd3f](/docs/pd3f/), and the PyPI package `pd3f` contains the whole pipeline:
 
 ```bash
 pip install pd3f
 ```
 
-- Installation and usage: <https://github.com/pd3f/pd3f-core#readme>
-- API documentation: <https://pd3f.github.io/pd3f-core/>
+```python
+from pd3f import extract, output
+
+print(output.text(extract("letter.pdf")))
+```
+
+The repository [pd3f-core](https://github.com/pd3f/pd3f-core) is archived and keeps the code of the 0.x versions; `pip install "pd3f<1"` installs the last of them.

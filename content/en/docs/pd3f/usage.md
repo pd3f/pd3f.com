@@ -8,92 +8,67 @@ date: "2021-03-08T00:00:00Z"
 weight: 7
 ---
 
-## Using the GUI
+## Web app
 
-Access the Web-based GUI at <http://localhost:1616>.
-After uploading a PDF you get redirected to a page displaying the progress and the results of the job.
-The first job downloads the language models, which takes a while.
+Open <http://localhost:8000> and upload one or more PDFs.
+The first job, or the one picked from the list, shows its steps while it runs, then the text next to the PDF.
+The uncertain decisions are marked; each mark can be focused and shows the options.
+Copy the text, or download it as text or Markdown, with the decision log, the tables as CSV and the OCRed PDF.
 
-## Using the API
+The browser remembers its own jobs.
+The first job with a Flair scorer in a language downloads that scorer's two language models; `flair-fast` shares one pair for German, French and Italian.
+
+## Command line
+
+```bash
+pd3f letter.pdf > letter.txt
+pd3f letter.pdf --lang en --headers-footers drop > letter.txt
+pd3f letter.pdf --scorer flair --out letter/   # text.txt, text.md, decisions.json; tables/*.csv and ocr.pdf if any
+```
+
+The main options:
+
+- `--lang`: `de` (default), `en`, `es`, `fr` or `it`; another language has no Flair scorer and needs `--ocr-lang` for OCR
+- `--scorer`: what decides the cases the rules leave open, `none` (default), `flair` or `flair-fast`, see [How it works](../how_it_works/)
+- `--headers-footers`: `separate` (default: one copy at the start and the end of the text), `drop` or `keep` in place, which leaves paragraphs cut by a page break apart
+- `--footnotes-in-place`: keep footnotes at the end of their page instead of the end of the text; a paragraph cut by a page break then stays apart there
+- `--ocr`: `auto` (default: pages without usable text), `force` or `skip`
+- `--out`: a new or empty directory for the outputs instead of the text on stdout
+
+## Python
 
 ```python
-import sys
+from pd3f import extract, output
+
+result = extract("letter.pdf", lang="de", scorer="none")
+print(output.text(result))
+```
+
+## HTTP API
+
+```python
 import time
 
 import requests
 
-with open("/dir/test.pdf", "rb") as f:
-    response = requests.post(
-        "http://localhost:1616", files={"pdf": ("test.pdf", f)}, data={"lang": "de"}
-    )
-job_id = response.json()["id"]
+with open("letter.pdf", "rb") as f:
+    job = requests.post("http://localhost:8000/jobs", files={"pdf": f}, data={"lang": "de"}).json()
 
-while True:
-    j = requests.get(f"http://localhost:1616/update/{job_id}").json()
-    if "text" in j:
-        break
-    if "failed" in j:
-        sys.exit(j["log"])
-    print("waiting...")
+while (status := requests.get(f"http://localhost:8000{job['url']}").json())["state"] in ("queued", "running"):
     time.sleep(1)
-print(j["text"])
+if status["state"] == "failed":
+    raise SystemExit(status["error"])
+print(requests.get(f"http://localhost:8000{job['url']}/text.txt").text)
 ```
 
-POST parameters:
+`POST /jobs` takes the PDF as `pdf` and the options of the command line as form fields: `lang` (one of the five), `scorer`, `headers_footers`, `ocr`, `ocr_lang`, and `footnotes_in_place` and `page_breaks`, which switch on when present.
+The outputs are files of the job: `text.txt`, `text.md`, `decisions.json`, `ocr.pdf`, `tables/<n>.csv`.
+`DELETE /jobs/<id>` deletes a job and its files.
+The [README](https://github.com/pd3f/pd3f#http-api) describes the status and the errors.
 
-- `pdf`: the PDF file
-- `lang`: the language, one of `de`, `en`, `es`, `fr`, `it`
-- `fast`: use smaller, faster but less accurate language models (default: false)
-- `tables`: extract tables (default: false)
-- `experimental`: deduplicate page headers and footers and remove page numbers from them, move footnotes to the end and join paragraphs split across pages (default: false)
-- `check_ocr`: OCR pages without text first (default: true, cannot be changed in the GUI)
-- `parsr_config`, `parsr_adjust_cleaner_config`: JSON to change the configuration of Parsr, see [`example_api.py`](https://github.com/pd3f/pd3f/blob/master/example_api.py) and the [pd3f-core documentation](https://pd3f.github.io/pd3f-core/export.html#pd3f.export.extract)
+## Housekeeping
 
-Flags accept `1`, `true`, `on` and `yes`, or `0`, `false`, `off`, `no` and an empty value, in any case.
-Other values, and invalid JSON, are rejected with status 400.
-
-Poll `/update/<id>` to follow the progress. The JSON response contains:
-
-- `log`: always present, text output from the job
-- `text`, `tables` and `filename`: only present when the job finished successfully; `tables` is a list of CSV strings, or `null` without `tables`
-- `position`: present if the job is waiting, its position in the queue
-- `running`: present if the job is running
-- `failed`: present if the job has failed
-
-Unknown and deleted jobs return status 400.
-
-Once `/update/<id>` has returned the text, the results are also available as files: `/files/<filename>.txt` and `/files/<filename>_tables.zip`, with `filename` from that response.
-
-### Scaling
-
-Run more workers to process several PDFs at once:
-
-```bash
-./prod.sh --scale worker=3
-```
-
-To increase the number of web server processes, adapt the environment variable `WEB_CONCURRENCY` in [`docker-compose.prod.yml`](https://github.com/pd3f/pd3f/blob/master/docker-compose.prod.yml).
-
-### House Keeping
-
-pd3f stores data in four places:
-
-- `./data/pd3f-data-uploads/`: input and output files
-- the `cache` volume: language models and cached scores, so they are not downloaded or computed again
-- the `to_ocr` volume: PDFs waiting for OCR; the OCR worker removes them, the OCRed PDFs and the logs stay until the files of the job get deleted
-- inside the `parsr` container: Parsr never deletes the files of its jobs, a few MB per PDF
-
-The worker deletes a job and its files `KEEP_RESULTS_HOURS` after it finished or failed (24 in `docker-compose.yml`).
-Until then, you can retry failed jobs or delete them right away; a retried job is still deleted `KEEP_RESULTS_HOURS` after its first failure, even while it runs.
-Jobs whose worker got killed, e.g. by a restart or when running out of memory, are not deleted automatically:
-
-```bash
-docker compose exec worker flask retry-failed
-docker compose exec worker flask delete-failed
-```
-
-To free the space Parsr uses, recreate its container when no job is running:
-
-```bash
-docker compose up -d --force-recreate parsr
-```
+The web app keeps each job in a directory under `/data/jobs` in the container (`PD3F_JOBS`) and the scorers' models under `/data/flair`.
+Jobs older than `PD3F_JOB_TTL` hours (24) are deleted when a new job is created.
+`PD3F_WORKERS` (2) sets how many PDFs are extracted at the same time.
+Jobs that were queued or running when the container stopped are marked failed at the next start; upload those PDFs again.

@@ -11,28 +11,21 @@ subtitle = ''
   columns = "1"
 +++
 
-*Eine längere Einführung zu pd3f gibt es in einem [Blog-Post auf der Seite des Prototype Fund](https://archive.demoweek.prototypefund.de/runde7/projects/06-ddd.html).*
+*Eine längere Einführung zu pd3f 0.x gibt es in einem [Blog-Post auf der Seite des Prototype Fund](https://archive.demoweek.prototypefund.de/runde7/projects/06-ddd.html).*
 
-pd3f erkennt automatisiert Text auf gescannte PDFs mit [OCRmyPDF](https://github.com/jbarlow83/OCRmyPDF) (Tesseract) und extrahiert Tabellen mit [Camelot](https://github.com/camelot-dev/camelot) und [Tabula](https://github.com/tabulapdf/tabula).
-Es baut auf der Ausgabe von [Parsr](https://github.com/axa-group/Parsr) auf.
-Parsr erkennt Hierarchien von Text und teilt den Text in Wörter, Zeilen und Absätze auf.
+pd3f liest PDFs mit [LiteParse](https://github.com/run-llama/liteparse) und erkennt den Text gescannter Seiten mit [OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) (Tesseract).
+Dann rekonstruiert es den Fließtext: Es fügt Zeilen zu Absätzen zusammen, setzt am Zeilenende getrennte Wörter wieder zusammen, nimmt Kopf- und Fußzeilen samt Seitenzahlen aus dem Text und sammelt die Fußnoten am Ende.
+Die meisten dieser Entscheidungen treffen feste Regeln und die Schreibweise, die das Dokument an anderer Stelle verwendet.
+Den Rest können auf Wunsch die zeichenbasierten Sprachmodelle von [Flair](https://github.com/flairNLP/flair) entscheiden.
 
-Obwohl Parsr etwas Struktur in die PDF-Datei bringt, ist der Text immer noch zerstümmelt, z. B. sind Wörter durch Bindestriche getrennt.
-Das zugrundeliegende Python-Paket [pd3f-core](https://github.com/pd3f/pd3f-core) versucht, den ursprünglichen Fließtext zu rekonstruieren, indem es Bindestriche, neue Zeilen und/oder Leerzeichen entfernt.
-Es verwendet maschinelles Lernen mit [Sprachmodellen (Language Models)](https://machinelearningmastery.com/statistical-language-modeling-and-neural-language-models/), um zu erraten, wie der ursprüngliche Text aussah.
-
-pd3f ist besonders nützlich für Sprachen mit langen Wörtern wie im Deutschem.
+pd3f ist besonders nützlich für Sprachen mit langen Wörtern wie das Deutsche.
 Es wurde hauptsächlich entwickelt, um deutsche Briefe und offizielle Dokumente zu bearbeiten.
-Neben Deutsch unterstützt pd3f auch Englisch, Spanisch und Französisch.
-Weitere Sprachen werden später hinzugefügt.
+Neben Deutsch unterstützt pd3f auch Englisch, Spanisch, Französisch und Italienisch.
 
-pd3f enthält eine webbasierte GUI und einen [Flask](https://flask.palletsprojects.com/)-basierten Microservice (API).
+pd3f ist eine Python-Bibliothek, ein Kommandozeilen-Werkzeug und eine Web-App mit HTTP-API, zusammen in einem Docker-Image.
 
-Eine systematische Evaluierung von pd3f erfolgt im September 2020.
+pd3f steht unter der [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.de.html).
 
-
-![](/media/flow.jpg)
-
-### Online-Vortrag über pd3f (in Englisch)
+### Online-Vortrag über pd3f 0.x (in Englisch)
 
 {{< youtube iaIgTx49a6s >}}
